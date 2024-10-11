@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Generator (OSU)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        /* Custom CSS for dropdowns */
+        select {
+            color: black; /* Text color for select */
+        }
+
+        option {
+            color: black; /* Text color for option items */
+        }
+
+        /* Custom style for hiding and showing */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+    <div class="bg-gray-800 text-white w-[32rem] rounded-lg shadow-lg">
+        <!-- Header -->
+        <div class="flex items-center justify-between bg-gray-900 p-3 rounded-t-lg">
+            <i class="fas fa-times"></i>
+            <span>OSU-Escalation (Comment Generator)</span>
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+
+        <!-- Options Container -->
+        <div id="optionsContainer" class="p-4 space-y-4">
+            <!-- Dropdowns and inputs -->
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>Issue:</span>
+                <select id="issue" class="bg-transparent outline-none">
+                    <option value=""></option>
+                    <option value="Blocked account">Blocked by OSU</option>
+                    <option value="Money collection issue">Money collection issue</option>
+                    <option value="Marked as delivered">Marked as delivered</option>
+                    <option value="Rude agent">Rude agent</option>
+                    <option value="Food poisoning">Food poisoning</option>
+                    <option value="Expired item">Expired item</option>
+                    <option value="Following up on the refund//">Following up on the refund</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <input id="extraText" type="text" placeholder="[Enter some text]" class="bg-transparent w-full outline-none">
+                <i class="fas fa-chevron-right text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>CST History:</span>
+                <select id="history" class="bg-transparent outline-none">
+                    <option value="Good History">Good History</option>
+                    <option value="Bad History">Bad History</option>
+                    <option value="Recent Creation">Recent Creation</option>
+                    <option value="CST capped 3 compensations per month">Compensation Seeker</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>Taken actions before:</span>
+                <select id="actions" class="bg-transparent outline-none">
+                    <option value=""></option>
+                    <option value="Compensated before">Compensated</option>
+                    <option value="Compensated and paritally refunded before">Compensated + Partially refunded</option>
+                    <option value="Paritally refunded before">Partially refunded</option>
+                    <option value="Compensated and fully refunded before">Compensated + fully refunded</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>CST:</span>
+                <select id="trialOutcome" class="bg-transparent outline-none">
+                    <option value="Contacted the CST">Contacted the CST</option>
+                    <option value="Called the CST third trial but unreachable // a handling mail sent">CST unreachable - Handling mail</option>
+                    <option value="Called the CST third trial but unreachable // an unreachable mail sent">CST unreachable - Unreachable mail</option>
+                    <option value="Didn't call the CST">No call</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <input id="why" type="text" placeholder="[Why no call]" class="bg-transparent w-full outline-none">
+                <i class="fas fa-chevron-right text-orange-500"></i>
+            </div>
+            <div class="relative">
+                <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                    <span>REST:</span>
+                    <select id="REST" class="bg-transparent outline-none">
+                        <option value=""></option>
+                        <option value="REST Agreed ROP">REST agreed</option>
+                        <option value="REST Refused ROP">REST refused</option>
+                        <option value="REST RNA">REST RNA</option>
+                    </select>
+                    <i class="fas fa-chevron-left text-orange-500"></i>
+                </div>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <input id="ROP" type="text" placeholder="[ROP Name]" class="bg-transparent w-full outline-none">
+                <i class="fas fa-chevron-right text-orange-500"></i>
+            </div>
+            <div class="relative">
+                <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                    <span>Rider:</span>
+                    <select id="rider" class="bg-transparent outline-none">
+                        <option value=""></option>
+                        <option value="Rider Agreed">Rider agreed</option>
+                        <option value="Rider Refused">Rider refused</option>
+                        <option value="Rider RNA">Rider RNA</option>
+                        <option value="Rider-Right Address">Rider confrimed right address</option>
+                        <option value="Rider-Wrong Address">Rider confrimed wrong address</option>
+
+                    </select>
+                    <i class="fas fa-chevron-left text-orange-500"></i>
+                </div>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>Compensated?</span>
+                <select id="compensation" class="bg-transparent outline-none">
+                    <option value="">No</option>
+                    <option value="Compensated CST with">Yes</option>
+                    <option value="Compensated CST as retention with">Retention</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <input id="amount" type="text" placeholder="Amount and Approved by?" class="bg-transparent w-full outline-none">
+                <i class="fas fa-chevron-right text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>Forms</span>
+                <select id="forms" class="bg-transparent outline-none">
+                    <option value=""></option>
+                    <option value="RM form filled FYI">RM FYI</option>
+                    <option value="RM form filled FYA SLA 24 hours">RM FYA - SLA 24 hours</option>
+                    <option value="BPO form filled">BPO</option>
+                    <option value="Finance form filled SLA 5-7 working days">Finance - SLA 5-7 working days</option>
+                    <option value="Marketing form filled">Marketing - SLA 1 working day</option>
+                    <option value="Product form filled SLA 8-120 hours">Product - SLA 8-120 hours</option>
+                    <option value="Critical form filled SLA 10-15 minutes">Critical - SLA 10-15 min</option>
+                    <option value="Fraud form filled SLA 1 working day">Fraud - SLA 1 working day</option>
+                    <option value="t-Pro form filled SLA 24 hours via email">t-Pro - SLA 24 hours via email</option>
+                    <option value="t-Rewards form filled SLA 24 hours">t-Rewards - SLA 24 hours</option>
+                    <option value="Handover form filled">Handover</option>
+                    <option value="TMP follow up form filled">TMP follow up</option>
+                    <option value="t-Mart form filled">t-Mart Post Delivery</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>Refund method:</span>
+                <select id="refund_method" class="bg-transparent outline-none">
+                    <option value=""></option>
+                    <option value="refunded to bank as per CST's request">Bank</option>
+                    <option value="refunded to TC as per CST's request">TC</option>
+                </select>
+                <i class="fas fa-chevron-left text-orange-500"></i>
+            </div>
+            
+
+        </div>
+
+        <!-- Comment Display Container -->
+        <div id="commentDisplayContainer" class="p-4 hidden">
+            <pre id="commentDisplay" class="whitespace-pre-wrap"></pre>
+            <button id="copyButton" class="bg-green-500 text-white py-2 px-4 rounded-lg mt-4">Copy</button>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex justify-between p-4 bg-gray-900 rounded-b-lg">
+            <button id="refresh" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Refresh</button>
+            <button id="create" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Create the Comment</button>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('create').addEventListener('click', () => {
+        // Collect values from the select elements
+        const issue = document.getElementById('issue').value;
+        const extraText = document.getElementById('extraText').value;
+        const history = document.getElementById('history').value;
+        const actions = document.getElementById('actions').value;
+        const trialOutcome = document.getElementById('trialOutcome').value;
+        const why = document.getElementById('why').value;
+        const REST = document.getElementById('REST').value;
+        const ROP = document.getElementById('ROP').value;
+        const rider = document.getElementById('rider').value;
+        const compensation = document.getElementById('compensation').value;
+        const amount = document.getElementById('amount').value;
+        const forms = document.getElementById('forms').value;
+        const refund_method = document.getElementById('refund_method').value;
+
+
+
+
+        // Build the final comment string
+        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:▷ ${issue}-${extraText}-${history}-${actions} ▶ ${trialOutcome}-${why} -${REST} ${ROP}-${rider} ${compensation} ${amount}-${forms}-${refund_method}`;
+
+        // Show the comment in the designated box
+        document.getElementById('commentDisplay').innerText = comment;
+
+        // Hide the options and show the comment display
+        document.getElementById('optionsContainer').classList.add('hidden');
+        document.getElementById('commentDisplayContainer').classList.remove('hidden');
+    });
+
+    document.getElementById('refresh').addEventListener('click', () => {
+        // Show the options again and hide the comment box
+        document.getElementById('optionsContainer').classList.remove('hidden');
+        document.getElementById('commentDisplayContainer').classList.add('hidden');
+
+        // Reset the dropdowns to their default values
+        document.getElementById('outboundCall').selectedIndex = 0;
+        document.getElementById('trailOutcome').selectedIndex = 0;
+        document.getElementById('extraInfo').selectedIndex = 0;
+        document.getElementById('forms').selectedIndex = 0;
+        document.getElementById('compensation').selectedIndex = 0;
+
+        // Clear the extra text input field
+        document.getElementById('extraText').value = '';
+    });
+
+    document.getElementById('copyButton').addEventListener('click', () => {
+        // Get the comment text
+        const commentText = document.getElementById('commentDisplay').innerText;
+
+        // Copy the comment text to the clipboard
+        navigator.clipboard.writeText(commentText).then(() => {
+            alert('Comment copied to clipboard!'); // Optional alert on success
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+        });
+    });
+</script>
+</html>
