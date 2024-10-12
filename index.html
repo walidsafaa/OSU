@@ -21,15 +21,53 @@
         .hidden {
             display: none;
         }
+
+
+        #tip {
+      display: none;
+      margin-top: 8px;
+      font-size: 12px;  /* Small font size */
+      color: #fff;  /* White text for contrast */
+      background-color: #ce0505;  /* Black background */
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+        /* Style for the hover-trigger */
+        .hover-trigger {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px;
+            background-color: lightblue;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        /* Hide the image initially */
+        .image-hover {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000; /* Make sure it's above other elements */
+            max-width: 100%; /* You can adjust the size */
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        /* Show the image when hovering over the trigger element */
+        .hover-trigger:hover + .image-hover {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-900 flex items-center justify-center h-screen">
     <div class="bg-gray-800 text-white w-[32rem] rounded-lg shadow-lg">
         <!-- Header -->
-        <div class="flex items-center justify-between bg-gray-900 p-3 rounded-t-lg">
-            <i class="fas fa-times"></i>
-            <span>OSU-Escalation (Comment Generator)</span>
-            <i class="fas fa-ellipsis-v"></i>
+        <div class="flex items-center justify-between bg-gray-700 p-3 rounded-t-lg">
+            <span class="font-bold">Comment Generator (OSU Escalation)</span>
+            <i class="text-sm">Developed by Walid Ibrahim</i>
         </div>
 
         <!-- Options Container -->
@@ -40,16 +78,17 @@
                 <span>Issue:</span>
                 <select id="issue" class="bg-transparent outline-none">
                     <option value=""></option>
-                    <option value="Blocked account">Blocked by OSU</option>
-                    <option value="App issue">App issue</option>
-                    <option value="Voucher issue">Voucher issue</option>
-                    <option value="Money collection issue">Money collection issue</option>
-                    <option value="Marked as delivered">Marked as delivered</option>
-                    <option value="Rude agent">Rude agent</option>
-                    <option value="Food poisoning">Food poisoning</option>
-                    <option value="FOBI">FOBI</option>
-                    <option value="Expired item">Expired item</option>
-                    <option value="Following up on the refund">Following up on the refund</option>
+                    <option value="Blocked account-">Blocked by OSU</option>
+                    <option value="App issue-">App issue</option>
+                    <option value="Voucher issue-">Voucher issue</option>
+                    <option value="Money collection issue-">Money collection issue</option>
+                    <option value="Marked as delivered-">Marked as delivered</option>
+                    <option value="Rude agent-">Rude agent</option>
+                    <option value="Food poisoning-">Food poisoning</option>
+                    <option value="FOBI-">FOBI</option>
+                    <option value="Expired item-">Expired item</option>
+                    <option value="Following up on the refund-">Following up on the refund</option>
+                    <option value="Cooking instructions not followed-">Cooking instructions not followed</option>
                 </select>
                 <i id="issueIcon" class="fas text-orange-500"></i>
             </div>
@@ -61,6 +100,7 @@
             <div id="cstHistorySection" class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>CST History:</span>
                 <select id="history" class="bg-transparent outline-none">
+                    <option value=""></option>
                     <option value="-Good History">Good History</option>
                     <option value="-Bad History">Bad History</option>
                     <option value="-Recent Creation">Recent Creation</option>
@@ -76,9 +116,11 @@
                     <option value="-Compensated and paritally refunded before">Compensated + Partially refunded</option>
                     <option value="-Paritally refunded before">Partially refunded</option>
                     <option value="-Compensated and fully refunded before">Compensated + fully refunded</option>
+                    <option value="-Already cancelled">Cancelled</option>
                 </select>
                 <i id="actionsIcon" class="fas text-orange-500"></i>
             </div>
+            <div id="tip">Tip: Check if the cancellation reason is correct.</div>
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>CST:</span>
                 <select id="trialOutcome" class="bg-transparent outline-none">
@@ -186,10 +228,13 @@
                 </select>
                 <i id="refundIcon" class="fas text-orange-500"></i>
             </div>
-            
-
+            <!-- New button for showing image -->
+            <button class="hover-trigger bg-gray-500 text-white py-1 px-2 rounded-lg mt-4 text-sm">SLA⏱️</button>
+            <img src="https://lh4.googleusercontent.com/KF76V041DT22POUwrsphYsFi0qZOYxJnvdxii9VIS8ksIN4cOyHZWr6JcsGsjWsTZi2uFisvNWuoaU8yPrEJ4uR-yj4ucKXNubsDdku2DUGdoC6s6QkqIaMBrHVfaghJ8A=w1280" alt="Hover Image" class="image-hover">
+            <p class="text-sm">
+                NOTE: TC validity - Except for Oman 10 years<br>
+              </p>
         </div>
-
         <!-- Comment Display Container -->
         <div id="commentDisplayContainer" class="p-4 hidden">
             <pre id="commentDisplay" class="whitespace-pre-wrap"></pre>
@@ -197,7 +242,7 @@
         </div>
 
         <!-- Action buttons -->
-        <div class="flex justify-between p-4 bg-gray-900 rounded-b-lg">
+        <div class="flex justify-between p-4 bg-gray-700 rounded-b-lg"> 
             <button id="reset" class="bg-red-500 text-white py-2 px-4 rounded-lg">Reset</button> <!-- Red Reset button -->
             <button id="back" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Back</button>
             <button id="create" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Create the Comment</button>
@@ -205,6 +250,7 @@
     </div>
 </body>
 <script>
+ 
     // Function to update the icon based on field value
         function updateIcon(fieldId, iconId) {
             const field = document.getElementById(fieldId);
@@ -259,6 +305,28 @@ document.getElementById('extraText').addEventListener('input', function() {
     this.style.height = (this.scrollHeight) + 'px';  // Set it to the new content height
 });
 
+document.getElementById('history').addEventListener('change', function() {
+    const selectedHistory = this.value;
+    const compensationSection = document.getElementById('compensationSection');
+    const refundMethodSection = document.getElementById('refundMethodSection');
+    const compensation = document.getElementById('compensation');
+    const refundMethod = document.getElementById('refund_method');
+    const amount = document.getElementById('amount');
+
+    if (selectedHistory === '-Bad History') {
+        compensationSection.classList.add('hidden');
+        refundMethodSection.classList.add('hidden');
+
+        // Set values to None (null or empty string) when hidden
+        compensation.value = "";
+        amount.value = "";
+        refundMethod.value = "";
+    } else {
+        compensationSection.classList.remove('hidden');
+        refundMethodSection.classList.remove('hidden');
+    }
+});
+
 document.getElementById('issue').addEventListener('change', function() {
     const selectedIssue = this.value;
     const cstHistorySection = document.getElementById('cstHistorySection');
@@ -271,7 +339,7 @@ document.getElementById('issue').addEventListener('change', function() {
     const riderSection = document.querySelector('.relative'); // The container for the rider section
     
     // Show or hide rider section for specific issues
-    if (selectedIssue === 'Money collection issue' || selectedIssue === 'Marked as delivered') {
+    if (selectedIssue === 'Money collection issue-' || selectedIssue === 'Marked as delivered-') {
         riderSection.classList.remove('hidden'); // Show the rider section
     } else {
         riderSection.classList.add('hidden'); // Hide the rider section for other issues
@@ -279,7 +347,7 @@ document.getElementById('issue').addEventListener('change', function() {
         document.getElementById('beforeCheckbox').checked = false;
     }
 
-    if (selectedIssue === 'Blocked account') {
+    if (selectedIssue === 'Blocked account-') {
         cstHistorySection.classList.add('hidden');
         compensationSection.classList.add('hidden');
         refundMethodSection.classList.add('hidden');
@@ -325,6 +393,17 @@ document.getElementById('compensation').addEventListener('change', function() {
     }
 });
 
+//Tip
+    const actionSelect = document.getElementById('actions');
+    const tip = document.getElementById('tip');
+
+    actionSelect.addEventListener('change', () => {
+      if (actionSelect.value === '-Already cancelled') {
+        tip.style.display = 'block';
+      } else {
+        tip.style.display = 'none';
+      }
+    });
 
     document.getElementById('create').addEventListener('click', () => {
         // Collect values from the select elements
@@ -347,7 +426,7 @@ document.getElementById('compensation').addEventListener('change', function() {
         const beforeValue = beforeChecked ? " before" : ""; // Set value to "before" if checked
 
         // Build the final comment string, include "beforeValue"
-        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:▷ ${issue}${extraText}${history}${actions} ▶ ${trialOutcome}-${why}${REST}${ROP}${rider}${beforeValue}${compensation}${amount}${forms}${refund_method}`;
+        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:➤ ${issue}${extraText}${history}${actions} ➤ ${trialOutcome}-${why}${REST}${ROP}${rider}${beforeValue}${compensation}${amount}${forms}${refund_method}`;
 
         // Show the comment in the designated box
         document.getElementById('commentDisplay').innerText = comment;
@@ -376,35 +455,42 @@ document.getElementById('compensation').addEventListener('change', function() {
     });
 
     document.getElementById('reset').addEventListener('click', () => {
-        // Reset all the select dropdowns to default (first option)
-        document.getElementById('issue').selectedIndex = 0;
-        document.getElementById('history').selectedIndex = 0;
-        document.getElementById('actions').selectedIndex = 0;
-        document.getElementById('trialOutcome').selectedIndex = 0;
-        document.getElementById('REST').selectedIndex = 0;
-        document.getElementById('rider').selectedIndex = 0;
-        document.getElementById('compensation').selectedIndex = 0;
-        document.getElementById('forms').selectedIndex = 0;
-        document.getElementById('refund_method').selectedIndex = 0;
+    // Reset all the select dropdowns to default (first option)
+    document.getElementById('issue').selectedIndex = 0;
+    document.getElementById('history').selectedIndex = 0;
+    document.getElementById('actions').selectedIndex = 0;
+    document.getElementById('trialOutcome').selectedIndex = 0;
+    document.getElementById('REST').selectedIndex = 0;
+    document.getElementById('rider').selectedIndex = 0;
+    document.getElementById('compensation').selectedIndex = 0;
+    document.getElementById('forms').selectedIndex = 0;
+    document.getElementById('refund_method').selectedIndex = 0;
 
-        // Reset text inputs
-        document.getElementById('extraText').value = '';
-        document.getElementById('why').value = '';
-        document.getElementById('ROP').value = '';
-        document.getElementById('amount').value = '';
+    // Reset text inputs
+    document.getElementById('extraText').value = '';
+    document.getElementById('why').value = '';
+    document.getElementById('ROP').value = '';
+    document.getElementById('amount').value = '';
 
-        // Reset the "Before" checkbox
-        document.getElementById('beforeCheckbox').checked = false;
+    // Reset the "Before" checkbox
+    document.getElementById('beforeCheckbox').checked = false;
 
-        // Hide optional sections and reset hidden input values
-        document.getElementById('ROPContainer').classList.add('hidden');
-        document.getElementById('AmountContainer').classList.add('hidden');
+    // Hide optional sections and reset hidden input values
+    document.getElementById('ROPContainer').classList.add('hidden');
+    document.getElementById('AmountContainer').classList.add('hidden');
 
-        // Reset any other fields or sections that were conditionally shown
-        document.getElementById('cstHistorySection').classList.remove('hidden');
-        document.getElementById('compensationSection').classList.remove('hidden');
-        document.getElementById('refundMethodSection').classList.remove('hidden');
+    // Reset any other fields or sections that were conditionally shown
+    document.getElementById('cstHistorySection').classList.remove('hidden');
+    document.getElementById('compensationSection').classList.remove('hidden');
+    document.getElementById('refundMethodSection').classList.remove('hidden');
+
+    // Remove fa-check from all icons
+    const icons = document.querySelectorAll('.fas');
+    icons.forEach(icon => {
+        icon.classList.remove('fa-check');
     });
+});
+
 
 
 </script>
