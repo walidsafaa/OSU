@@ -35,132 +35,156 @@
         <!-- Options Container -->
         <div id="optionsContainer" class="p-4 space-y-4">
             <!-- Dropdowns and inputs -->
+             
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>Issue:</span>
                 <select id="issue" class="bg-transparent outline-none">
                     <option value=""></option>
                     <option value="Blocked account">Blocked by OSU</option>
+                    <option value="App issue">App issue</option>
+                    <option value="Voucher issue">Voucher issue</option>
                     <option value="Money collection issue">Money collection issue</option>
                     <option value="Marked as delivered">Marked as delivered</option>
                     <option value="Rude agent">Rude agent</option>
                     <option value="Food poisoning">Food poisoning</option>
+                    <option value="FOBI">FOBI</option>
                     <option value="Expired item">Expired item</option>
-                    <option value="Following up on the refund//">Following up on the refund</option>
+                    <option value="Following up on the refund">Following up on the refund</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i id="issueIcon" class="fas text-orange-500"></i>
             </div>
             
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <input id="extraText" type="text" placeholder="[Enter some text]" class="bg-transparent w-full outline-none">
-                <i class="fas fa-chevron-right text-orange-500"></i>
+                <textarea id="extraText" placeholder="[Type the other issue]" class="bg-transparent w-full outline-none resize-none overflow-hidden"></textarea>
+                <i id="extraTextIcon" class="fas text-orange-500"></i>
             </div>
-            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+            <div id="cstHistorySection" class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>CST History:</span>
                 <select id="history" class="bg-transparent outline-none">
-                    <option value="Good History">Good History</option>
-                    <option value="Bad History">Bad History</option>
-                    <option value="Recent Creation">Recent Creation</option>
-                    <option value="CST capped 3 compensations per month">Compensation Seeker</option>
+                    <option value="-Good History">Good History</option>
+                    <option value="-Bad History">Bad History</option>
+                    <option value="-Recent Creation">Recent Creation</option>
+                    <option value="-CST capped 3 compensations per month">Compensation Seeker</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i id="historyIcon" class="fas text-orange-500"></i>
             </div>
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>Taken actions before:</span>
                 <select id="actions" class="bg-transparent outline-none">
                     <option value=""></option>
-                    <option value="Compensated before">Compensated</option>
-                    <option value="Compensated and paritally refunded before">Compensated + Partially refunded</option>
-                    <option value="Paritally refunded before">Partially refunded</option>
-                    <option value="Compensated and fully refunded before">Compensated + fully refunded</option>
+                    <option value="-Compensated before">Compensated</option>
+                    <option value="-Compensated and paritally refunded before">Compensated + Partially refunded</option>
+                    <option value="-Paritally refunded before">Partially refunded</option>
+                    <option value="-Compensated and fully refunded before">Compensated + fully refunded</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i id="actionsIcon" class="fas text-orange-500"></i>
             </div>
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <span>CST:</span>
                 <select id="trialOutcome" class="bg-transparent outline-none">
                     <option value="Contacted the CST">Contacted the CST</option>
-                    <option value="Called the CST third trial but unreachable // a handling mail sent">CST unreachable - Handling mail</option>
-                    <option value="Called the CST third trial but unreachable // an unreachable mail sent">CST unreachable - Unreachable mail</option>
-                    <option value="Didn't call the CST">No call</option>
+                    <option value="Called the CST third trial but unreachable-a handling mail sent">CST unreachable - Handling mail</option>
+                    <option value="Called the CST third trial but unreachable-an unreachable mail sent">CST unreachable - Unreachable mail</option>
+                    <option value="Didn't call the CST-handling mail sent">No call</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i class="fas fa-check text-orange-500"></i>
             </div>
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <input id="why" type="text" placeholder="[Why no call]" class="bg-transparent w-full outline-none">
-                <i class="fas fa-chevron-right text-orange-500"></i>
+                <i id="whyIcon" class="fas text-orange-500"></i>
             </div>
-            <div class="relative">
-                <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                    <span>REST:</span>
-                    <select id="REST" class="bg-transparent outline-none">
-                        <option value=""></option>
-                        <option value="REST Agreed ROP">REST agreed</option>
-                        <option value="REST Refused ROP">REST refused</option>
-                        <option value="REST RNA">REST RNA</option>
-                    </select>
-                    <i class="fas fa-chevron-left text-orange-500"></i>
-                </div>
-            </div>
-            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <input id="ROP" type="text" placeholder="[ROP Name]" class="bg-transparent w-full outline-none">
-                <i class="fas fa-chevron-right text-orange-500"></i>
-            </div>
-            <div class="relative">
-                <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                    <span>Rider:</span>
-                    <select id="rider" class="bg-transparent outline-none">
-                        <option value=""></option>
-                        <option value="Rider Agreed">Rider agreed</option>
-                        <option value="Rider Refused">Rider refused</option>
-                        <option value="Rider RNA">Rider RNA</option>
-                        <option value="Rider-Right Address">Rider confrimed right address</option>
-                        <option value="Rider-Wrong Address">Rider confrimed wrong address</option>
 
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <div class="w-1/2 flex items-center">
+                    <span>REST:</span>
+                    <select id="REST" class="bg-transparent outline-none w-full ml-2">
+                        <option value=""></option>
+                        <option value="-REST Agreed ROP ">REST agreed</option>
+                        <option value="-REST Refused ROP ">REST refused</option>
+                        <option value="-REST RNA">REST RNA</option>
                     </select>
-                    <i class="fas fa-chevron-left text-orange-500"></i>
+                </div>
+                <div id="ROPContainer" class="w-1/2 flex items-center hidden">
+                    <span></span>
+                    <input id="ROP" type="text" placeholder="[ROP Name]" class="bg-transparent w-full ml-2 outline-none">
+                    
+                </div>
+                <i id="RESTIcon" class="fas text-orange-500"></i>
+            </div>
+            
+            
+            <div class="relative hidden">
+                <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                    <div class="flex items-center space-x-4"> <!-- Added flex container for side-by-side alignment -->
+                        <span>Rider:</span>
+                        <select id="rider" class="bg-transparent outline-none">
+                            <option value=""></option>
+                            <option value="-Rider Agreed">Rider agreed</option>
+                            <option value="-Rider Refused">Rider refused</option>
+                            <option value="-Rider RNA">Rider RNA</option>
+                            <option value="-Rider-Right Address">Rider confirmed right address</option>
+                            <option value="-Rider-Wrong Address">Rider confirmed wrong address</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 'Before' checkbox placed side by side with Rider select -->
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="beforeCheckbox" class="form-checkbox text-orange-500 h-5 w-5">
+                        <span>Before</span>
+                    </div>
+                    <i id="riderIcon" class="fas text-orange-500"></i>
                 </div>
             </div>
-            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <span>Compensated?</span>
-                <select id="compensation" class="bg-transparent outline-none">
-                    <option value="">No</option>
-                    <option value="Compensated CST with">Yes</option>
-                    <option value="Compensated CST as retention with">Retention</option>
-                </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+            
+
+            
+            <div id="compensationSection" class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <div class="w-1/2 flex items-center">
+                    <span>Compensated?</span>
+                    <select id="compensation" class="bg-transparent outline-none w-full ml-2">
+                        <option value="">No</option>
+                        <option value="-Compensated CST with ">Yes</option>
+                        <option value="-Compensated CST as retention with ">Retention</option>
+                    </select>
+                </div>
+                <div id="AmountContainer" class="w-1/2 flex items-center hidden">
+                    <span></span>
+                    <input id="amount" type="text" placeholder="Amount and Approved by?" class="bg-transparent w-full ml-2 outline-none">
+                </div>
+                <i id="compensationIcon" class="fas text-orange-500"></i>
             </div>
+
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <input id="amount" type="text" placeholder="Amount and Approved by?" class="bg-transparent w-full outline-none">
-                <i class="fas fa-chevron-right text-orange-500"></i>
-            </div>
-            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <span>Forms</span>
+                <span>📈Forms:</span>
                 <select id="forms" class="bg-transparent outline-none">
                     <option value=""></option>
-                    <option value="RM form filled FYI">RM FYI</option>
-                    <option value="RM form filled FYA SLA 24 hours">RM FYA - SLA 24 hours</option>
-                    <option value="BPO form filled">BPO</option>
-                    <option value="Finance form filled SLA 5-7 working days">Finance - SLA 5-7 working days</option>
-                    <option value="Marketing form filled">Marketing - SLA 1 working day</option>
-                    <option value="Product form filled SLA 8-120 hours">Product - SLA 8-120 hours</option>
-                    <option value="Critical form filled SLA 10-15 minutes">Critical - SLA 10-15 min</option>
-                    <option value="Fraud form filled SLA 1 working day">Fraud - SLA 1 working day</option>
-                    <option value="t-Pro form filled SLA 24 hours via email">t-Pro - SLA 24 hours via email</option>
-                    <option value="t-Rewards form filled SLA 24 hours">t-Rewards - SLA 24 hours</option>
-                    <option value="Handover form filled">Handover</option>
-                    <option value="TMP follow up form filled">TMP follow up</option>
-                    <option value="t-Mart form filled">t-Mart Post Delivery</option>
+                    <option value="-Escalated before">Escalated before</option>
+                    <option value="-RM form filled FYI">RM FYI</option>
+                    <option value="-RM form filled FYA SLA 24 hours">RM FYA - SLA 24 hours</option>
+                    <option value="-BPO form filled">BPO</option>
+                    <option value="-Finance form filled SLA 5-7 working days">Finance - SLA 5-7 working days</option>
+                    <option value="-Marketing form filled">Marketing - SLA 1 working day</option>
+                    <option value="-Escalated to Product team filled SLA 8-120 hours">Product - SLA 8-120 hours</option>
+                    <option value="-Escalated to Critical team filled SLA 10-15 minutes">Critical - SLA 10-15 min</option>
+                    <option value="-Fraud form filled SLA 1 working day">Fraud - SLA 1 working day</option>
+                    <option value="-t-Pro form filled SLA 24 hours via email">t-Pro - SLA 24 hours via email</option>
+                    <option value="-t-Rewards form filled SLA 24 hours">t-Rewards - SLA 24 hours</option>
+                    <option value="-Handover form filled">Handover</option>
+                    <option value="-TMP follow up form filled">TMP follow up</option>
+                    <option value="-t-Mart form filled">t-Mart Post Delivery</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i id="formsIcon" class="fas text-orange-500"></i>
             </div>
-            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
-                <span>Refund method:</span>
+            <div id="refundMethodSection" class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <span>💸Refund method:</span>
                 <select id="refund_method" class="bg-transparent outline-none">
                     <option value=""></option>
-                    <option value="refunded to bank as per CST's request">Bank</option>
-                    <option value="refunded to TC as per CST's request">TC</option>
+                    <option value="-refunded to TC">TC (Cash)</option>
+                    <option value="-Partially refunded to TC">Partially refunded</option>
+                    <option value="-refunded to bank as per CST's request">Bank</option>
+                    <option value="-refunded to TC as per CST's request">TC</option>
                 </select>
-                <i class="fas fa-chevron-left text-orange-500"></i>
+                <i id="refundIcon" class="fas text-orange-500"></i>
             </div>
             
 
@@ -174,12 +198,134 @@
 
         <!-- Action buttons -->
         <div class="flex justify-between p-4 bg-gray-900 rounded-b-lg">
-            <button id="refresh" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Refresh</button>
+            <button id="reset" class="bg-red-500 text-white py-2 px-4 rounded-lg">Reset</button> <!-- Red Reset button -->
+            <button id="back" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Back</button>
             <button id="create" class="bg-orange-500 text-white py-2 px-4 rounded-lg">Create the Comment</button>
         </div>
     </div>
 </body>
 <script>
+    // Function to update the icon based on field value
+        function updateIcon(fieldId, iconId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(iconId);
+            if (field.value.trim() !== "") {
+                icon.classList.add('fa-check');
+            } else {
+                icon.classList.remove('fa-check');
+            }
+        }
+
+        // Event listeners for each input/select field
+        document.getElementById('issue').addEventListener('change', function() {
+            updateIcon('issue', 'issueIcon');
+        });
+
+        document.getElementById('extraText').addEventListener('input', function() {
+            updateIcon('extraText', 'extraTextIcon');
+        });
+
+        document.getElementById('history').addEventListener('input', function() {
+            updateIcon('history', 'historyIcon');
+        });
+
+        document.getElementById('actions').addEventListener('input', function() {
+            updateIcon('actions', 'actionsIcon');
+        });
+
+        // Add more fields here as needed by duplicating the above listeners
+        document.getElementById('why').addEventListener('input', function() {
+            updateIcon('why', 'whyIcon');
+        });
+        document.getElementById('REST').addEventListener('input', function() {
+            updateIcon('REST', 'RESTIcon');
+        });
+        document.getElementById('rider').addEventListener('input', function() {
+            updateIcon('rider', 'riderIcon');
+        });
+        document.getElementById('compensation').addEventListener('input', function() {
+            updateIcon('compensation', 'compensationIcon');
+        });
+        document.getElementById('forms').addEventListener('input', function() {
+            updateIcon('forms', 'formsIcon');
+        });
+        document.getElementById('refund_method').addEventListener('input', function() {
+            updateIcon('refund_method', 'refundIcon');
+        });
+
+
+document.getElementById('extraText').addEventListener('input', function() {
+    this.style.height = 'auto';  // Reset the height
+    this.style.height = (this.scrollHeight) + 'px';  // Set it to the new content height
+});
+
+document.getElementById('issue').addEventListener('change', function() {
+    const selectedIssue = this.value;
+    const cstHistorySection = document.getElementById('cstHistorySection');
+    const compensationSection = document.getElementById('compensationSection');
+    const refundMethodSection = document.getElementById('refundMethodSection');
+    const history = document.getElementById('history');
+    const compensation = document.getElementById('compensation');
+    const refundMethod = document.getElementById('refund_method');
+    const amount = document.getElementById('amount');
+    const riderSection = document.querySelector('.relative'); // The container for the rider section
+    
+    // Show or hide rider section for specific issues
+    if (selectedIssue === 'Money collection issue' || selectedIssue === 'Marked as delivered') {
+        riderSection.classList.remove('hidden'); // Show the rider section
+    } else {
+        riderSection.classList.add('hidden'); // Hide the rider section for other issues
+        document.getElementById('rider').selectedIndex = 0;
+        document.getElementById('beforeCheckbox').checked = false;
+    }
+
+    if (selectedIssue === 'Blocked account') {
+        cstHistorySection.classList.add('hidden');
+        compensationSection.classList.add('hidden');
+        refundMethodSection.classList.add('hidden');
+
+        // Set values to None (null or empty string) when hidden
+        history.value = "";
+        compensation.value = "";
+        amount.value = "";
+        refundMethod.value = "";
+    } else {
+        cstHistorySection.classList.remove('hidden');
+        compensationSection.classList.remove('hidden');
+        refundMethodSection.classList.remove('hidden');
+    }
+});
+
+
+document.getElementById('REST').addEventListener('change', function() {
+    const RESTValue = this.value;
+    const ROPContainer = document.getElementById('ROPContainer');
+    const ROP = document.getElementById('ROP');
+
+    // Show or hide ROP field and set value to null if hidden
+    if (RESTValue === '-REST Agreed ROP ' || RESTValue === '-REST Refused ROP ') {
+        ROPContainer.classList.remove('hidden');
+    } else {
+        ROPContainer.classList.add('hidden');
+        ROP.value = "";  // Set ROP value to null when hidden
+    }
+});
+
+document.getElementById('compensation').addEventListener('change', function() {
+    const compensationValue = this.value;
+    const AmountContainer = document.getElementById('AmountContainer');
+    const amount = document.getElementById('amount');
+
+    // Show Amount field if compensation selected, otherwise hide it and set value to null
+    if (compensationValue === '-Compensated CST with ' || compensationValue === '-Compensated CST as retention with ') {
+        AmountContainer.classList.remove('hidden');
+    } else {
+        AmountContainer.classList.add('hidden');
+        amount.value = "";  // Set amount to null when hidden
+    }
+});
+
+
     document.getElementById('create').addEventListener('click', () => {
         // Collect values from the select elements
         const issue = document.getElementById('issue').value;
@@ -196,11 +342,12 @@
         const forms = document.getElementById('forms').value;
         const refund_method = document.getElementById('refund_method').value;
 
+        // Get the "Before" checkbox value
+        const beforeChecked = document.getElementById('beforeCheckbox').checked;
+        const beforeValue = beforeChecked ? " before" : ""; // Set value to "before" if checked
 
-
-
-        // Build the final comment string
-        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:▷ ${issue}-${extraText}-${history}-${actions} ▶ ${trialOutcome}-${why} -${REST} ${ROP}-${rider} ${compensation} ${amount}-${forms}-${refund_method}`;
+        // Build the final comment string, include "beforeValue"
+        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:▷ ${issue}${extraText}${history}${actions} ▶ ${trialOutcome}-${why}${REST}${ROP}${rider}${beforeValue}${compensation}${amount}${forms}${refund_method}`;
 
         // Show the comment in the designated box
         document.getElementById('commentDisplay').innerText = comment;
@@ -210,20 +357,10 @@
         document.getElementById('commentDisplayContainer').classList.remove('hidden');
     });
 
-    document.getElementById('refresh').addEventListener('click', () => {
+    document.getElementById('back').addEventListener('click', () => {
         // Show the options again and hide the comment box
         document.getElementById('optionsContainer').classList.remove('hidden');
         document.getElementById('commentDisplayContainer').classList.add('hidden');
-
-        // Reset the dropdowns to their default values
-        document.getElementById('outboundCall').selectedIndex = 0;
-        document.getElementById('trailOutcome').selectedIndex = 0;
-        document.getElementById('extraInfo').selectedIndex = 0;
-        document.getElementById('forms').selectedIndex = 0;
-        document.getElementById('compensation').selectedIndex = 0;
-
-        // Clear the extra text input field
-        document.getElementById('extraText').value = '';
     });
 
     document.getElementById('copyButton').addEventListener('click', () => {
@@ -237,5 +374,38 @@
             console.error('Could not copy text: ', err);
         });
     });
+
+    document.getElementById('reset').addEventListener('click', () => {
+        // Reset all the select dropdowns to default (first option)
+        document.getElementById('issue').selectedIndex = 0;
+        document.getElementById('history').selectedIndex = 0;
+        document.getElementById('actions').selectedIndex = 0;
+        document.getElementById('trialOutcome').selectedIndex = 0;
+        document.getElementById('REST').selectedIndex = 0;
+        document.getElementById('rider').selectedIndex = 0;
+        document.getElementById('compensation').selectedIndex = 0;
+        document.getElementById('forms').selectedIndex = 0;
+        document.getElementById('refund_method').selectedIndex = 0;
+
+        // Reset text inputs
+        document.getElementById('extraText').value = '';
+        document.getElementById('why').value = '';
+        document.getElementById('ROP').value = '';
+        document.getElementById('amount').value = '';
+
+        // Reset the "Before" checkbox
+        document.getElementById('beforeCheckbox').checked = false;
+
+        // Hide optional sections and reset hidden input values
+        document.getElementById('ROPContainer').classList.add('hidden');
+        document.getElementById('AmountContainer').classList.add('hidden');
+
+        // Reset any other fields or sections that were conditionally shown
+        document.getElementById('cstHistorySection').classList.remove('hidden');
+        document.getElementById('compensationSection').classList.remove('hidden');
+        document.getElementById('refundMethodSection').classList.remove('hidden');
+    });
+
+
 </script>
 </html>
