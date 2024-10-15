@@ -129,7 +129,7 @@
                     <option value="Called the CST third trial but unreachable-an unreachable mail sent">CST unreachable - Unreachable mail</option>
                     <option value="Didn't call the CST-handling mail sent">No call</option>
                 </select>
-                <i class="fas fa-check text-orange-500"></i>
+                <i id="CSTIcon" class="fas fa-check text-orange-500"></i>
             </div>
             <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <input id="why" type="text" placeholder="[Why no call]" class="bg-transparent w-full outline-none">
@@ -168,7 +168,7 @@
                             <option value="-Rider-Wrong Address">Rider confirmed wrong address</option>
                         </select>
                     </div>
-                    
+
                     <!-- 'Before' checkbox placed side by side with Rider select -->
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" id="beforeCheckbox" class="form-checkbox text-orange-500 h-5 w-5">
@@ -178,7 +178,10 @@
                 </div>
             </div>
             
-
+            <div class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
+                <input id="RESTRider" type="text" placeholder="[Extra Info]" class="bg-transparent w-full outline-none">
+                <i id="RESTRiderIcon" class="fas text-orange-500"></i>
+            </div>
             
             <div id="compensationSection" class="flex items-center justify-between bg-gray-700 text-white p-2 rounded-lg">
                 <div class="w-1/2 flex items-center">
@@ -261,7 +264,7 @@
                 icon.classList.remove('fa-check');
             }
         }
-
+        trialOutcome
         // Event listeners for each input/select field
         document.getElementById('issue').addEventListener('change', function() {
             updateIcon('issue', 'issueIcon');
@@ -278,7 +281,11 @@
         document.getElementById('actions').addEventListener('input', function() {
             updateIcon('actions', 'actionsIcon');
         });
+        document.getElementById('trialOutcome').addEventListener('input', function() {
+            updateIcon('trialOutcome', 'CSTIcon');
+        });
 
+        
         // Add more fields here as needed by duplicating the above listeners
         document.getElementById('why').addEventListener('input', function() {
             updateIcon('why', 'whyIcon');
@@ -288,6 +295,9 @@
         });
         document.getElementById('rider').addEventListener('input', function() {
             updateIcon('rider', 'riderIcon');
+        });
+        document.getElementById('RESTRider').addEventListener('input', function() {
+            updateIcon('RESTRider', 'RESTRiderIcon');
         });
         document.getElementById('compensation').addEventListener('input', function() {
             updateIcon('compensation', 'compensationIcon');
@@ -420,13 +430,15 @@ document.getElementById('compensation').addEventListener('change', function() {
         const amount = document.getElementById('amount').value;
         const forms = document.getElementById('forms').value;
         const refund_method = document.getElementById('refund_method').value;
+        const RESTRider = " " + document.getElementById('RESTRider').value;
 
+        
         // Get the "Before" checkbox value
         const beforeChecked = document.getElementById('beforeCheckbox').checked;
         const beforeValue = beforeChecked ? " before" : ""; // Set value to "before" if checked
 
         // Build the final comment string, include "beforeValue"
-        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:➤ ${issue}${extraText}${history}${actions} ➤ ${trialOutcome}-${why}${REST}${ROP}${rider}${beforeValue}${compensation}${amount}${forms}${refund_method}`;
+        const comment = `𝐎𝐒𝐔-𝐄𝐬𝐜𝐚𝐥𝐚𝐭𝐢𝐨𝐧:➤ ${issue}${extraText}${history}${actions} ➤ ${trialOutcome}-${why}${REST}${ROP}${rider}${RESTRider}${beforeValue}${compensation}${amount}${forms}${refund_method}`;
 
         // Show the comment in the designated box
         document.getElementById('commentDisplay').innerText = comment;
